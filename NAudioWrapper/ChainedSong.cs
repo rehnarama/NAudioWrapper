@@ -117,7 +117,7 @@ namespace NAudioWrapper
         {
             if (SongQueue.Count > 0)
             {
-                SongQueue.Peek().Play(0);
+                SongQueue.Peek().Play();
                 _manualStop = false;
             }
         }
