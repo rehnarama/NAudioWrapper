@@ -10,6 +10,10 @@
             <Button Width="100" Height="30" x:Name="Stop" Click="Stop_Click">Stop</Button>
             <Button Width="100" Height="30" x:Name="Dispose" Click="Dispose_Click">Dispose</Button>
         </StackPanel>
-        <Button x:Name="Load" Width="100" Height="30" Click="Load_Click">Load</Button>
+        <StackPanel Orientation="Horizontal" Margin="0,30,0,0" >
+            <Button x:Name="Load" Width="100" Height="30" Click="Load_Click" Margin="0" HorizontalAlignment="Left" VerticalAlignment="Top">Load</Button>
+            <Button x:Name="SeekSong1" Height="30" HorizontalAlignment="Left" Width="100" VerticalAlignment="Top" Click="SeekSong1_Click">Seek song 1</Button>
+        </StackPanel>
+        <TextBlock x:Name="TextBlockLog" HorizontalAlignment="Left" Margin="10,125,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="184" Width="480"/>
     </Grid>
 </Window>

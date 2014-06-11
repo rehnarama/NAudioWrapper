@@ -111,6 +111,11 @@ namespace NAudioWrapper
             }
         }
 
+        public void Seek(int milliseconds)
+        {
+            song.Seek(milliseconds);
+        }
+
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>

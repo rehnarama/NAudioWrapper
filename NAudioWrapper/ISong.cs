@@ -45,5 +45,13 @@ namespace NAudioWrapper
         /// Sets position to 0 and pauses the song. Does not release any resources.
         /// </summary>
         void Stop();
+        /// <summary>
+        /// Seeks to the specified millisecond counting from start of file.
+        /// </summary>
+        /// <param name="milliseconds">The amount of milliseconds.</param>
+        void Seek(int milliseconds);
+
+        //TODO: Add a length property that ought to return the amount of bytes in the song, something like this:
+        //long Length { get; }
     }
 }

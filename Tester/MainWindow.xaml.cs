@@ -34,6 +34,13 @@ namespace Tester
         public MainWindow()
         {
             InitializeComponent();
+
+            manager.AnyPlaybackStopped += manager_AnyPlaybackStopped;
+        }
+
+        void manager_AnyPlaybackStopped(object sender, NAudio.Wave.StoppedEventArgs e)
+        {
+            TextBlockLog.Text += String.Format("Song with path {0} has stopped\n", ((ISong)sender).URI);
         }
 
         private void Play_Click(object sender, RoutedEventArgs e)
@@ -63,8 +70,16 @@ namespace Tester
 
         private void Load_Click(object sender, RoutedEventArgs e)
         {
+            manager.AddSong(new Song(sound1));
             manager.AddSong(new LoopedSong(sound2));
             manager.AddSong(new ChainedSong(new Song[2] { new Song(sound3), new Song(song1) }));
+        }
+
+        private void SeekSong1_Click(object sender, RoutedEventArgs e)
+        {
+            //In chained songs, the first song should be the key in SongDictionary
+            //Seeking 2,5min = 150000ms
+            manager.SongDictionary[sound3].Seek(180000);
         }
 
     }

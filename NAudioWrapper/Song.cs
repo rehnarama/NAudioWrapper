@@ -113,6 +113,16 @@ namespace NAudioWrapper
             output.Stop();
         }
 
+        /// <summary>
+        /// Seeks to the specified millisecond counting from start of file.
+        /// </summary>
+        /// <param name="milliseconds">The amount of milliseconds.</param>
+        public void Seek(int milliseconds)
+        {
+            reader.Seek(provider.WaveFormat.AverageBytesPerSecond * (milliseconds / 1000), SeekOrigin.Begin);
+        }
+
+        #region PrivateMethods
         private IWaveProvider MakeSong(string URI)
         {
             reader = new AudioFileReader(URI);
@@ -120,6 +130,7 @@ namespace NAudioWrapper
             //return new Wave16ToFloatProvider(new Wave32To16Stream(reader));
             return reader;
         }
+        #endregion
 
         /// <summary>
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.

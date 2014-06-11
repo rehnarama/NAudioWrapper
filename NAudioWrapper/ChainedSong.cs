@@ -105,6 +105,8 @@ namespace NAudioWrapper
                 }
                 else
                 {
+                    //Re-queue the first songso the URI can be available in the callback
+                    SongQueue.Enqueue(SongList[0]);
                     NotifyPlaybackStopped(e);
                 }
             }
@@ -157,6 +159,12 @@ namespace NAudioWrapper
                 SongQueue.Clear();
                 SongQueue = new Queue<Song>(SongList);
             }
+        }
+
+        //TODO: Improve this seek code to make it stop current playing track, set to next track, seek accordingly, all with one seek call
+        public void Seek(int milliseconds)
+        {
+            SongQueue.Peek().Seek(milliseconds);
         }
 
         /// <summary>
