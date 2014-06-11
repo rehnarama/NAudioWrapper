@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 
 namespace NAudioWrapper
@@ -12,6 +13,11 @@ namespace NAudioWrapper
 
         private List<ISong> SongList = null;
         public Dictionary<string, ISong> SongDictionary = null;
+
+        /// <summary>
+        /// Occurs when [any playback stopped].
+        /// </summary>
+        public event EventHandler<StoppedEventArgs> AnyPlaybackStopped;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SongManager"/> class.
@@ -31,8 +37,7 @@ namespace NAudioWrapper
         public Song AddSong(string URI, bool play = false)
         {
             Song s = new Song(URI, play);
-            SongDictionary.Add(URI, s);
-            SongList.Add(s);
+            AddSong(s, play);
             return s;
         }
 
@@ -43,9 +48,19 @@ namespace NAudioWrapper
         /// <param name="play">if set to <c>true</c> then the song will automatically play once added.</param>
         public void AddSong(ISong song, bool play = false)
         {
+            song.PlaybackStopped += song_PlaybackStopped;
+
+            SongDictionary.Add(song.URI, song);
             SongList.Add(song);
             if (play)
                 song.Play();
+        }
+
+        void song_PlaybackStopped(object sender, NAudio.Wave.StoppedEventArgs e)
+        {
+            //Pass through the event
+            if (AnyPlaybackStopped != null)
+                AnyPlaybackStopped(sender, e);
         }
 
         /// <summary>
