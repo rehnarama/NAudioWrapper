@@ -192,6 +192,7 @@ namespace NAudioWrapper
                         {
                             if (SongList[0] != null)
                             {
+                                SongList[0].Stop();
                                 SongList[0].Dispose();
                                 SongList.RemoveAt(0);
                             }

@@ -137,10 +137,12 @@ namespace NAudioWrapper
                 {
                     if (song != null)
                     {
+                        song.Stop();                        
                         song.Dispose();
-                        song = null;
                     }
                 }
+
+                song = null;
                 _disposed = true;
             }
         }
