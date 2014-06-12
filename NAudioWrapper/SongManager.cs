@@ -12,7 +12,6 @@ namespace NAudioWrapper
         private bool _disposed = false;
 
         private List<ISong> SongList = null;
-        public Dictionary<string, ISong> SongDictionary = null;
 
         /// <summary>
         /// Occurs when [any playback stopped].
@@ -24,7 +23,6 @@ namespace NAudioWrapper
         /// </summary>
         public SongManager()
         {
-            SongDictionary = new Dictionary<string, ISong>();
             SongList = new List<ISong>();
         }
 
@@ -50,7 +48,6 @@ namespace NAudioWrapper
         {
             song.PlaybackStopped += song_PlaybackStopped;
 
-            SongDictionary.Add(song.URI, song);
             SongList.Add(song);
             if (play)
                 song.Play();
@@ -150,11 +147,6 @@ namespace NAudioWrapper
                         }
                         SongList.Clear();
                         SongList = null;
-                    }
-                    if (SongDictionary != null)
-                    {
-                        SongDictionary.Clear();
-                        SongDictionary = null;
                     }
                 }
             }
