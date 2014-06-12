@@ -137,7 +137,7 @@ namespace NAudioWrapper
                 {
                     if (song != null)
                     {
-                        song.Stop();                        
+                        this.Stop();                        
                         song.Dispose();
                     }
                 }
