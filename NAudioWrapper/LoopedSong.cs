@@ -46,6 +46,19 @@ namespace NAudioWrapper
         public event EventHandler<StoppedEventArgs> PlaybackStopped;
 
         /// <summary>
+        /// Notifies the playback stopped.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="StoppedEventArgs"/> instance containing the event data.</param>
+        private void NotifyPlaybackStopped(object sender, StoppedEventArgs e)
+        {
+            if (PlaybackStopped != null)
+            {
+                PlaybackStopped(sender, e);
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="LoopedSong" /> class.
         /// </summary>
         /// <param name="URI">The URI to the song to be played</param>
@@ -76,6 +89,10 @@ namespace NAudioWrapper
                 else if (_loops == -1)
                 {
                     song.Play(0);
+                }
+                else
+                {
+                    NotifyPlaybackStopped(this, e);
                 }
             }
         }
