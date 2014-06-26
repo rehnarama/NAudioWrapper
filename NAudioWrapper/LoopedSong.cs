@@ -10,6 +10,8 @@ namespace NAudioWrapper
     {
         bool _disposed;
 
+        int _loops;
+
         Song song;
         /// <summary>
         /// Whether or not the song was stopped manually. true if manual stop, false if natural, i.e. the song ended
@@ -44,12 +46,15 @@ namespace NAudioWrapper
         public event EventHandler<StoppedEventArgs> PlaybackStopped;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoopedSong"/> class.
+        /// Initializes a new instance of the <see cref="LoopedSong" /> class.
         /// </summary>
         /// <param name="URI">The URI to the song to be played</param>
         /// <param name="play">Whether or not to start it immediately</param>
-        public LoopedSong(string URI, bool play = false)
+        /// <param name="loops">The amount of times to loop the song. -1 for infinite times, 0 for one play, no loops, 1 for two plays, one loop etc.</param>
+        public LoopedSong(string URI, bool play = false, int loops = -1)
         {
+            _loops = loops;
+
             song = new Song(URI, play);
             song.PlaybackStopped += song_PlaybackStopped;
         }
@@ -62,7 +67,17 @@ namespace NAudioWrapper
         void song_PlaybackStopped(object sender, StoppedEventArgs e)
         {
             if (!_manualStop)
-                song.Play(0);
+            {
+                if (_loops > 0)
+                {
+                    _loops--;
+                    song.Play(0);
+                }
+                else if (_loops == -1)
+                {
+                    song.Play(0);
+                }
+            }
         }
 
         /// <summary>
