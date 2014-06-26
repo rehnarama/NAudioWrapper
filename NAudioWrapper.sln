@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAudioWrapper", "NAudioWrapper\NAudioWrapper.csproj", "{90CB18D9-7A9D-4A17-B706-E5DF30ABCC81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tester", "Tester\Tester.csproj", "{1D430527-6F6C-460E-AABF-2900C4E9B75F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{90CB18D9-7A9D-4A17-B706-E5DF30ABCC81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90CB18D9-7A9D-4A17-B706-E5DF30ABCC81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90CB18D9-7A9D-4A17-B706-E5DF30ABCC81}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1D430527-6F6C-460E-AABF-2900C4E9B75F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1D430527-6F6C-460E-AABF-2900C4E9B75F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1D430527-6F6C-460E-AABF-2900C4E9B75F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1D430527-6F6C-460E-AABF-2900C4E9B75F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
